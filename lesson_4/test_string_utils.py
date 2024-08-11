@@ -45,10 +45,6 @@ def test_trim():
 def test_trim_with_numbers_input():
     assert utils.trim(371290) == "371290"
 
-@pytest.mark.xfail()
-def test_trim_with_spaces_output():
-    assert utils.trim("  МЕСЯЦ  ") == "  МЕСЯЦ  "
-
 ### to_list ###
 
 @pytest.mark.parametrize("string, delimeter, result", [
@@ -76,7 +72,6 @@ def test_to_list(string, delimeter, result):
     ("конец  ", "ц", True),
     ("Санкт-Петербург", "-", True),
     ("371290", "2", True),
-    # Negative #
     ("Главная", "г", False),
     ("буква", "ч", False),
     ("знак", "@", False),
@@ -96,7 +91,6 @@ def test_contains(string, symbol, result):
     ("Название", "Н", "азвание"),
     ("371290", "7", "31290"),
     ("Начало Положено", " ", "НачалоПоложено"),
-    # Negative #
     ("Сергей", "а", "Сергей"),
     ("", "", ""),
     ("", "а", ""),
@@ -117,7 +111,6 @@ def test_delete_symbol(string, symbol, result):
     ("Санта-Мария", "С", True),
     ("371290", "3", True),
     ("", "", True),
-    # Negative #
     ("Город", "г", False),
     ("кнопка", "К", False),
     ("", "%", False),
@@ -140,7 +133,6 @@ def test_starts_with(string, symbol, result):
     ("", "", True),
     ("Пробел ", " ", True),
     ("Царь1", "1", True),
-    # Negative #
     ("Город", "Д", False),
     ("КнопкА", "а", False),
     ("", "?", False),
@@ -158,7 +150,6 @@ def test_end_with (string, symbol, result):
     ("", True),
     (" ", True),
     ("  ", True),
-    # Negative #
     ("слово", False),
     (" впереди пробел", False),
     ("371290", False),
