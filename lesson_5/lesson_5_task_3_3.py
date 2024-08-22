@@ -9,12 +9,12 @@ try:
     firefox.get("http://uitestingplayground.com/classattr")
 
     for C in range(3):
-        blue_button = chrome.find_element(
+        chrome_blue_button = chrome.find_element(
             "xpath", "//button[contains(concat(' ' , normalize-space(@class), ' '), ' btn-primary ')]")
-        blue_button.click()
-        blue_button = firefox.find_element(
+        chrome_blue_button.click()
+        firefox_blue_button = firefox.find_element(
             "xpath", "//button[contains(concat(' ' , normalize-space(@class), ' '), ' btn-primary ')]")
-        blue_button.click()
+        firefox_blue_button.click()
         sleep(3)
         chrome.switch_to.alert.accept()
         firefox.switch_to.alert.accept()

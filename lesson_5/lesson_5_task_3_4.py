@@ -11,13 +11,16 @@ try:
     chrome.get("http://the-internet.herokuapp.com/entry_ad")
     firefox.get("http://the-internet.herokuapp.com/entry_ad")
 
-    wait = WebDriverWait(chrome, 10)
-    wait = WebDriverWait(firefox, 10)
-    close_button = wait.until(EC.element_to_be_clickable(
+    ch_wait = WebDriverWait(chrome, 10)
+    ff_wait = WebDriverWait(firefox, 10)
+    ch_close_button = ch_wait.until(EC.element_to_be_clickable(
+        By.CSS_SELECTOR, ".modal-footer"))
+    ff_close_button = ff_wait.until(EC.element_to_be_clickable(
         By.CSS_SELECTOR, ".modal-footer"))
     time.sleep(5)
 
-    close_button.click()
+    ch_close_button.click()
+    ff_close_button.click()
     time.sleep(3)
 
 except Exception as ex:

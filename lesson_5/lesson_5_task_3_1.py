@@ -10,9 +10,9 @@ try:
     firefox.get("https://the-internet.herokuapp.com/add_remove_elements/")
     
     for C in range(5):
-        add_button = chrome.find_element(
+        chrome.find_element(
             By.XPATH, '//button[text()="Add Element]').click()
-        add_button = firefox.find_element(
+        firefox.find_element(
             By.XPATH, '//button[text()="Add Element]').click()
     sleep(3)
 
