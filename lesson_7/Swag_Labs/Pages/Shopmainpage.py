@@ -7,12 +7,12 @@ class Shopmainpage:
         self.browser = browser
         self.browser.get(Shop_URL)
 
-    def registration_fields (self):
+    def registration_fields(self):
         self._user_name = (By.ID, "user-name")
         self._password = (By.ID, "password")
         self._login_button = (By.ID, "login-button")
 
-        self.browser.find_element(*self._user_name).send_keys("standart_user")
+        self.browser.find_element(*self._user_name).send_keys("standard_user")
         self.browser.find_element(*self._password).send_keys("secret_sauce")
         self.browser.find_element(*self._login_button).click()
 

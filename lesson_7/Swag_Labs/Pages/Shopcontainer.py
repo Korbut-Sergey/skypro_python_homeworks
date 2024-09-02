@@ -16,6 +16,7 @@ class Shopcontainer:
         self.first_name = (By.ID, "first-name")
         self.last_name = (By.ID, "last-name")
         self.postal_code = (By.ID, "postal-code")
+        self.continue_button = (By.ID, "continue")
 
         self.browser.find_element(*self.first_name).send_keys("Evgen")
         self.browser.find_element(*self.last_name).send_keys("Voronov")

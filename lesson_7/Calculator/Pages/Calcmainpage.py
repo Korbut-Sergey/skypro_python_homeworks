@@ -15,11 +15,11 @@ class CalcMain:
         delay_input.send_keys(45)
     
     def clicking_buttons(self):
-        self.browser.find_element(By.XPATH, "//span[test() = '7']").click()
-        self.browser.find_element(By.XPATH, "//span[test() = '+']").click()
-        self.browser.find_element(By.XPATH, "//span[test() = '8']").click()
-        self.browser.find_element(By.XPATH, "//span[test() = '=']").click()
+        self.browser.find_element(By.XPATH, "//span[text() = '7']").click()
+        self.browser.find_element(By.XPATH, "//span[text() = '+']").click()
+        self.browser.find_element(By.XPATH, "//span[text() = '8']").click()
+        self.browser.find_element(By.XPATH, "//span[text() = '=']").click()
 
-    def wait_button_gettext(self):
+    def wait_button_get_text(self):
         WebDriverWait(self.browser, 50).until(EC.text_to_be_present_in_element((By.CLASS_NAME, "screen"), "15"))
         return self.browser.find_element(By.CLASS_NAME, "screen").text
