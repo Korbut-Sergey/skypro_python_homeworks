@@ -9,7 +9,7 @@ class Company:
     def __init__(self, url=x_client_URL):
         self.url = url
 
-    def create(self, token: str, body: json):
+    def create_company(self, token: str, body: json):
         headers = {'x-client-token': token}
         response = requests.post(self.url + '/company', headers=headers, params=body)
         return response.json()

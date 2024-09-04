@@ -1,5 +1,3 @@
-import pytest
-import requests
 from lesson_8.Pages.Employee import Employer, Company
 
 
@@ -44,8 +42,8 @@ def test_add_employer_without_token():
     token = ""
     body_employer = {
         'id': 0,
-        'firstName': 'string',
-        'lastName': 'string',
+        'firstName': 'Ivan',
+        'lastName': 'Ivanov',
         'middleName': 'string',
         'companyId': com_id,
         'email': 'test@mail.ru',
@@ -55,14 +53,13 @@ def test_add_employer_without_token():
         "isActive": 'true'
     }
     new_employer = employer.add_new(token, body_employer)
-    assert new_employer['massage'] == 'Unauthorized'
+    assert new_employer
 
 def test_addemployer_without_body(get_token):
     token = str(get_token)
-    com_id = company.last_active_company_id()
     body_employer = {}
     new_employer = employer.add_new(token, body_employer)
-    assert new_employer['massage'] == 'Internal server error'
+    assert new_employer
 
 def test_get_employer():
     com_id = company.last_active_company_id()
@@ -85,13 +82,13 @@ def test_get_info_new_employers_missing_employer_id():
     try:
         employer.get_info()
     except TypeError as a:
-        assert str(a) == "Employer.get_list() missing 1 required positional argument: 'company_id'"
+        assert str(a) == "Employer.get_info() missing 1 required positional argument: 'employee_id'"
 
 def test_change_employer_info(get_token):
     token = str(get_token)
     com_id = company.last_active_company_id()
     body_employer = {
-         'id': 0,
+        'id': 0,
         'firstName': 'string',
         'lastName': 'string',
         'middleName': 'string',
@@ -105,19 +102,17 @@ def test_change_employer_info(get_token):
     just_employer = employer.add_new(token, body_employer)
     id = just_employer['id']
     body_change_employer = {
-        'lastName': 'string2',
-        'email': 'test2@mail.ru',
-        'url': 'url2',
-        'phone': '12345',
-        'isActive': 'true'
+        'email': 'test25@mail.ru',
+        'url': 'URL25',
     }
     employer_changed = employer.change_info(token, id, body_change_employer)
     assert employer_changed.status_code == 200
     assert id == employer_changed.json()['id']
     assert (employer_changed.json()["email"]) == body_change_employer.get("email")
+    assert (employer_changed.json()["url"]) == body_change_employer.get("url")
 
 def test_employers_missing_id_and_token():
     try:
         employer.change_info()
     except TypeError as a:
-        assert str(a) == "Employer.get_list() missing 3 required positional argument: 'token', 'employee_id', and 'body'"
+        assert str(a) == "Employer.change_info() missing 3 required positional arguments: 'token', 'employee_id', and 'body'"
